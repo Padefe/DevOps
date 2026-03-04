@@ -1,4 +1,4 @@
-// server import
+// server import for moduler av server oppsett og ESM filstier
 import express from "express"; 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 // Routes import
 import brukerRoutes from "../src/routes/authRoutes.js";
 
-// __dirname i ESM (Type måte å definere dynamiske filstier)
+// Simulerer __dirname i ESM ved å konvertere import.meta.url til filsti
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -16,10 +16,10 @@ const app = express();
 // Grunnleggende middleware. Sier at express skal bruke json format
 app.use(express.json());
 
-// Setter opp filsti for statiske filer
+// Setter opp filsti for statiske filer (HTML, CSS og Frontend JS og bilder)
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-// API routes, Vi bruker falske rutinger fra frontend og ruter til de riktige filstier
+// API routes. Setter opp egen definert ruting i stedenfor å eksponere filstruktur
 app.use("/api/auth", brukerRoutes);
 
 // HTML-sidene vi bruker i prosjektet

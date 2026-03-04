@@ -13,10 +13,10 @@ const __dirname = path.dirname(__filename);
 // Initierer express som en konstant
 const app = express();
 
-// Grunnleggende middleware
+// Grunnleggende middleware. Sier at express skal bruke json format
 app.use(express.json());
 
-// Statiske filer
+// Setter opp filsti for statiske filer
 app.use(express.static(path.join(__dirname, "..", "public")));
 
 // API routes, Vi bruker falske rutinger fra frontend og ruter til de riktige filstier

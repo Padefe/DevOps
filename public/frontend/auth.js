@@ -46,3 +46,51 @@ async function registrer() //Asynkron funksjon. Denne gjør slik at vi kan kjør
         console.log("Try virket ikke");
     }
 }
+
+async function authenticate()
+{
+    const loggBrukernavn = document.getElementById("brukernavn").value;
+    const loggPassord = document.getElementById("passord").value;
+
+    const loggStatusMsg = document.getElementById("status");
+
+    console.log(loggBrukernavn);
+    console.log(loggPassord);
+
+    if(!loggBrukernavn || !loggPassord)
+    {
+        console.log("Brukernavn og/eller passord ikke skrevet inn");
+    }
+
+    try
+    {
+        const loggReq = await fetch("http://localhost:3000/api/auth/login",
+        {
+            method: "POST",
+            headers:
+            {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({ loggBrukernavn, loggPassord })
+        });
+
+        const loggRes = await loggReq.json();
+        console.log(loggRes);
+
+        if (loggRes.success === true)
+        {
+            loggStatusMsg.textContent = "Bruker funnet!";
+            loggStatusMsg.style.color = "green";
+        }
+        else
+        {
+            loggStatusMsg.textContent = "Bruker ikke funnet :(";
+            loggStatusMsg.style.color = "red";
+        }
+    }
+    catch (error)
+    {
+        console.log("Try virker ikke");
+    }
+}

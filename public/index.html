@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div id="registrer">
         <h1>Registrer brukernavn</h1>
@@ -18,7 +20,20 @@
 
         <button onclick="registrer()">Registrer</button>
     </div>
-    
+
+    <div id="login">
+        <h1>Skriv inn brukernavn</h1>
+        <input id="brukernavn" type="text" placeholder="brukernavn">
+
+        <h1>Skriv inn passord</h1>
+        <input id="passord" type="password" placeholder="passord">
+
+        <p id="status"></p>
+
+        <button onclick="authenticate()">Logg inn</button>
+    </div>
+
     <script src="frontend/auth.js"></script>
 </body>
+
 </html>

@@ -12,3 +12,12 @@ export async function registrerBrukere(regBrukernavn, regPassord) // Eksport asy
     ])
     .select(); // Dette setter vi slik at vi velger raden som vi jobber i, og som da blir returnert tilbake i koden strukturen. Uten får vi ingen data tilbake
 }
+
+export async function loggInnBruker(loggBrukernavn, loggPassord)
+{
+    return await supabase
+    .from("Brukere")
+    .select("BrukerID, Brukernavn, Passord")
+    .eq("Brukernavn", loggBrukernavn)
+    .single();
+}

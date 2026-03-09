@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="logginn">
-        <h1>Skriv inn brukernavn</h1>
-        <input id="brukernavn" type="text" placeholder="Brukernavn">
+    <div id="registrer">
+        <h1>Registrer brukernavn</h1>
+        <input id="regBrukernavn" type="text" placeholder="Registrer brukernavn">
 
-        <h1>Skriv inn passord</h1>
-        <input id="passord" type="password" placeholder="Passord">
+        <h1>Registrer passord</h1>
+        <input id="regPassord" type="password" placeholder="Registrer passord">
 
-        <button onclick="autentisering()">Logg inn</button>
+        <p id="regStatus"></p>
+
+        <button onclick="registrer()">Registrer</button>
     </div>
+    
     <script src="frontend/auth.js"></script>
 </body>
 </html>

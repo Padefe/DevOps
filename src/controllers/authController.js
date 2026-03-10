@@ -1,5 +1,6 @@
 import { registrerBrukere } from "../models/authModels.js"; // Importering av funksjonen registrerBrukere fra authModels.js filen
 import { loggInnBruker } from "../models/authModels.js";
+import { hashThePassword } from "../services/authService.js";
 
 //Export av data fra login, mottar requests (req) og sender respons (res)
 export async function registrer(req, res)
@@ -9,7 +10,11 @@ export async function registrer(req, res)
     console.log("authController brukernavn: ", regBrukernavn);
     console.log("authController passord: ", regPassord);
 
-    const { data: registrerBruker } = await registrerBrukere(regBrukernavn, regPassord); // Venter på svar fra authModels.js
+    const hashpassord = await hashThePassword(regPassord);
+
+    console.log("authController hashpassword", hashpassord);
+
+    const { data: registrerBruker } = await registrerBrukere(regBrukernavn, hashpassord); // Venter på svar fra authModels.js
 
     console.log("authController test levering av database", registrerBruker);
 

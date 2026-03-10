@@ -1,6 +1,7 @@
 import { registrerBrukere } from "../models/authModels.js"; // Importering av funksjonen registrerBrukere fra authModels.js filen
 import { loggInnBruker } from "../models/authModels.js";
 import { hashThePassword } from "../services/authService.js";
+import { checkHashedPassword } from "../services/authService.js";
 
 //Export av data fra login, mottar requests (req) og sender respons (res)
 export async function registrer(req, res)
@@ -41,7 +42,13 @@ export async function login(req, res)
 
     console.log("authController loggBrukere (Info fra database)", loggBrukere);
 
-    if (loggBrukere)
+    const sjekketPassord = await checkHashedPassword(loggPassord, loggBrukere.Passord);
+
+    console.log("authController sjekk passord", sjekketPassord);
+
+    
+
+    if (sjekketPassord.success === true)
     {
         console.log("authController bruker logget inn");
         return res.json({ success: true });

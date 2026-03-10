@@ -13,3 +13,19 @@ export async function hashThePassword(regPassord)
         console.log("Hashing feilet");
     }
 }
+
+export async function checkHashedPassword(loggPassord, hashedPassword)
+{
+    console.log("authService login passord", loggPassord);
+
+    const validerPassord = await bcrypt.compare(loggPassord, hashedPassword);
+
+    if (!validerPassord)
+    {
+        return { success: false };
+    }
+    else
+    {
+        return { success: true };
+    }
+}

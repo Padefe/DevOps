@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 
 // Routes import
 import brukerRoutes from "../src/routes/authRoutes.js";
+import maskinRoutes from "../src/routes/maskinRoutes.js";
 
 // Simulerer __dirname i ESM ved å konvertere import.meta.url til filsti
 const __filename = fileURLToPath(import.meta.url);
@@ -21,10 +22,19 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 
 // API routes. Setter opp egen definert ruting i stedenfor å eksponere filstruktur
 app.use("/api/auth", brukerRoutes);
+app.use("/api/maskiner", maskinRoutes);
 
 // HTML-sidene vi bruker i prosjektet
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "public", "index.html"));
+});
+
+app.get("/start", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "public", "hjemmeside.html"));
+});
+
+app.get("/maskiner", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "public", "maskiner.html"));
 });
 
 //Serveren og hvilken port den skal lytte til

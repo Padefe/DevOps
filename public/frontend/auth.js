@@ -80,6 +80,7 @@ async function authenticate()
 
         if (loggRes.success === true)
         {
+            window.location.href = "start";
             loggStatusMsg.textContent = "Bruker funnet!";
             loggStatusMsg.style.color = "green";
         }

@@ -1,4 +1,5 @@
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export async function hashThePassword(regPassord)
 {
@@ -27,5 +28,22 @@ export async function checkHashedPassword(loggPassord, hashedPassword)
     else
     {
         return { success: true };
+    }
+}
+
+export async function genererToken(tokenPayLoad)
+{
+    try
+    {
+        const secret = process.env.JWT_SECRET;
+        const expiresIn = process.env.JWT_EXPIRES;
+
+        const token = jwt.sign(tokenPayLoad, secret, {expiresIn, audience: "app", issuer: "DEVOPS"});
+
+        return token;
+    }
+    catch (err)
+    {
+        throw err;
     }
 }

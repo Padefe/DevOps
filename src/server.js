@@ -2,6 +2,7 @@
 import express from "express"; 
 import path from "path";
 import { fileURLToPath } from "url";
+import cookieParser from "cookie-parser";
 
 // Routes import
 import brukerRoutes from "../src/routes/authRoutes.js";
@@ -13,6 +14,8 @@ const __dirname = path.dirname(__filename);
 
 // Initierer express som en konstant
 const app = express();
+
+app.use(cookieParser());
 
 // Grunnleggende middleware. Sier at express skal bruke json format
 app.use(express.json());

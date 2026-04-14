@@ -1,5 +1,11 @@
-body
+/*body
 {
     display: flex;
     flex-direction: row;
+}
+*/
+#map 
+{
+    width: 100%;
+    height: 40vw;
 }

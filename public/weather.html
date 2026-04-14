@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>Vær</h1>
     <h2>Klikk kart for værdata</h2>
     <div id="map"></div>
+    
+    <button onclick="fetchWeatherData()">Hent vær</button>
     <div id="weatherData"></div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="frontend/weather.js"></script>

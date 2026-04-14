@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 // Routes import
 import brukerRoutes from "../src/routes/authRoutes.js";
 import maskinRoutes from "../src/routes/maskinRoutes.js";
+import weatherRoutes from "../src/routes/weatherRoutes.js";
 
 // Simulerer __dirname i ESM ved å konvertere import.meta.url til filsti
 const __filename = fileURLToPath(import.meta.url);
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 // API routes. Setter opp egen definert ruting i stedenfor å eksponere filstruktur
 app.use("/api/auth", brukerRoutes);
 app.use("/api/maskiner", maskinRoutes);
+app.use("/api/vaer", weatherRoutes);
 
 // HTML-sidene vi bruker i prosjektet
 app.get("/", (req, res) => {
@@ -39,6 +41,11 @@ app.get("/start", (req, res) => {
 app.get("/maskiner", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "public", "maskiner.html"));
 });
+
+app.get("/weather", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "public", "weather.html"));
+});
+
 
 //Serveren og hvilken port den skal lytte til
 app.listen(3000, () => console.log("Server kjører på http://localhost:3000"));
